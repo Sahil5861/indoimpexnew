@@ -22,35 +22,6 @@
 
             <div class="content">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">Roles List</h5>
-                        <div class="card-tools text-end"
-                            style="display: flex; align-items:center; justify-content: space-between;">
-                            <div class="btns">
-                                <a href="#" class="text-white btn btn-primary" data-toggle="modal" data-target="#users">Add Roles</a>
-                                <button class="btn btn-danger" id="delete-selected">Delete Selected</button>
-                                <br><br>
-                                {{-- <select name="status" id="status" class="form-control">
-                                    <option value="">All</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select> --}}
-                            </div>
-                            <div class="dropdown">
-                                {{-- <a href="#" class="text-body" data-bs-toggle="dropdown">
-                                    <i class="ph-list"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="#" class="dropdown-item" data-toggle="modal"
-                                        data-target="#importModal">Import Roles</a>
-                                    <a href="#" class="dropdown-item" id="export-roles">Export Roles</a>
-                                </div> --}}
-
-                                <a href="{{route('admin.permissions')}}" class="text-white btn btn-primary" data-target="#users">Permissions</a>
-                            </div>
-
-                        </div>
-                    </div>
                     <div class="card-body">
                         @if(session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>

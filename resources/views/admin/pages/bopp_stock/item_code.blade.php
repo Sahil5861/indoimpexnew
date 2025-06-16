@@ -221,7 +221,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('bopp-stock.items.view') }}",
+                url: "{{ route('boppstock.items.view') }}",
                 data: function (d) {
                     d.status = $('#status').val();
                 }

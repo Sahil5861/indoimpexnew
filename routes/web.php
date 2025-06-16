@@ -150,13 +150,13 @@ Route::middleware(['auth'])->group(function () {
 
     // Non woven categorry
     Route::get('admin/non-voven-categories', [NonVovenCategoryController::class, 'index'])->name('non-wovenfabricstock.categories.view');    
-    Route::post('add-non--category', [NonVovenCategoryController::class, 'save'])->name('admin.NonVovenCategory.save');
+    Route::post('add-non-voven-category', [NonVovenCategoryController::class, 'save'])->name('admin.NonVovenCategory.save');
     Route::get('delete-non-category/{id}', [NonVovenCategoryController::class, 'remove'])->name('admin.NonVovenCategory.remove');
 
     // Non woven Items
     Route::get('admin/non-voven-item', [NonVovenItemController::class, 'index'])->name('non-wovenfabricstock.items.view');    
     Route::post('add-non-voven-item', [NonVovenItemController::class, 'save'])->name('admin.NonVovenItem.save');
-    Route::get('delete-non-voven-item/{id}', [NonVovenItemController::class, 'remove'])->name('admin.NonVovenItem.remove');
+    Route::get('delete-non-voven-item/{id}', [NonVovenItemController::class, 'remove'])->name('non-wovenfabricstock.items.delete');
 
 
 

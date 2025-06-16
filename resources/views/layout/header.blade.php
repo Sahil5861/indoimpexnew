@@ -350,9 +350,13 @@
 							Non Voven Fabric Stock
 						</a>
 
-						<div class="dropdown-menu dropdown-menu-end">													
-							<a href="{{route('non-wovenfabricstock.items.view')}}" class="dropdown-item rounded">Non Item Code List</a>							
+						<div class="dropdown-menu dropdown-menu-end">	
+							@if (hasPermission('non-wovenfabricstock.items.view') )													
+							<a href="{{route('non-wovenfabricstock.items.view')}}" class="dropdown-item rounded">Non Item Code List</a>
+							@endif
+							@if (hasPermission('non-wovenfabricstock.categories.view'))								
 							<a href="{{route('non-wovenfabricstock.categories.view')}}" class="dropdown-item rounded">Non Category List</a>
+							@endif
 						</div>
 					</li>
 					@endif	

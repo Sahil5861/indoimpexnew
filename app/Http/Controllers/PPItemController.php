@@ -29,7 +29,12 @@ class PPItemController extends Controller
                                         <i class="ph-list"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="#" onclick="editRole(this)" data-id="'.$row->id.'" data-item_code="'.$row->item_code.'" data-pp_size="'.$row->pp_size.'" data-pp_category="'.$row->pp_category.'" data-pp_gms="'.$row->pp_gms.'" class="dropdown-item">
+                                        <a href="#" onclick="editRole(this)" 
+                                        data-id="'.$row->id.'" 
+                                        data-item_code="'.$row->item_code.'" 
+                                        data-pp_size="'.$row->pp_size.'" 
+                                        data-pp_category="'.$row->pp_category.'" 
+                                        data-pp_gms="'.$row->pp_gms.'" class="dropdown-item">
                                             <i class="ph-pencil me-2"></i>Edit
                                         </a>
                                         <a href="' . route('admin.bopp-stock-pp-categories.remove', $row->id) . '" data-id="' . $row->id . '" class="dropdown-item delete-button">
@@ -86,6 +91,17 @@ class PPItemController extends Controller
             } else {
                 return back()->with('error', 'Something went wrong !!');
             }
+        }
+    }
+
+    public function remove(Request $request, $id)
+    {
+        $item = PPItem::find($id);
+    
+        if ($item && $item->delete()) {
+            return redirect()->route('boppstock.items.view')->with('success', 'Item deleted Suuccessfully !!');
+        } else {
+            return redirect()->route('boppstock.items.view')->with('error', 'Something went wrong!');
         }
     }
 }

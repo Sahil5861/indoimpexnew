@@ -9,7 +9,7 @@
                 <div class="page-header-content d-lg-flex">
                     <div class="d-flex">
                         <h4 class="page-title mb-0">
-                            Dashboard - <span class="fw-normal">PP Item List</span>
+                            Dashboard - <span class="fw-normal">Master Non Woven List</span>
                         </h4>
                         <a href="#page_header"
                             class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
@@ -23,7 +23,7 @@
             <div class="content">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">PP Item List</h5>
+                        <h5 class="card-title">Non Voven Item List</h5>
                         <div class="card-tools text-end"
                             style="display: flex; align-items:center; justify-content: space-between;">
                             <div class="btns">
@@ -45,9 +45,9 @@
                                         <th><input type="checkbox" id="select-all"></th>                                      
                                         <th>S.NO</th>
                                         <th>Item Code</th>
-                                        <th>PP Size</th>
-                                        <th>PP Category Value</th>                                        
-                                        <th>Micron </th>                                        
+                                        <th>Item Size</th>
+                                        <th>Item Color</th>                                        
+                                        <th>GSM </th>                                        
                                         <th>Created At</th>                                                                                
                                         <th class="text-center">Actions</th>                                        
                                     </tr>
@@ -73,7 +73,7 @@
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.bopp-stock-pp-item.save')}}" method="post">
+                <form action="{{route('admin.NonVovenItem.save')}}" method="post">
                     @csrf
                     <div class="form-body">
                         <div class="form-seperator-dashed"></div>
@@ -94,8 +94,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Item Category :</label>
-                                    <select name="category_value" id="category_value" class="form-control select2">
+                                    <label>Item Color :</label>
+                                    <select name="color" id="color" class="form-control select2">
                                         @foreach ($categories as $item)
                                             <option value="{{$item->category_value}}">{{$item->category_name}}</option>
                                         @endforeach
@@ -104,8 +104,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Microns : <small>(In grams)</small></label>
-                                    <input type="text" id="microns" class="form-control" name="microns" required placeholder="Enter Microns">
+                                    <label>GSM :</label>
+                                    <input type="text" id="gsm" class="form-control" name="gsm" required placeholder="Enter GSM">
                                 </div>
                             </div>
                         </div>
@@ -123,18 +123,19 @@
     </div>    
 </div>
 
+
 <div id="editrole" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bopp" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Item</h4>
-                <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title">Add Item</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.bopp-stock-pp-item.save')}}" method="post">
+                <form action="{{route('admin.NonVovenItem.save')}}" method="post">
                     @csrf
-                    <input type="test" id="roleid" name="id">
+                    <input type="text" name="id" id="roleid"  >
                     <div class="form-body">
                         <div class="form-seperator-dashed"></div>
                         <div class="row">
@@ -148,32 +149,31 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Size :</label>
-                                    <input type="text" id="pp_size1" class="form-control" name="size" required placeholder="Enter Item Value">
+                                    <input type="text" id="size1" class="form-control" name="size" required placeholder="Enter Item Value">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Item Category :</label>
-                                    <select name="category_value" id="pp_category" class="form-control select2">
+                                    <label>Item Color :</label>
+                                    <select name="color" id="color1" class="form-control select2">
                                         @foreach ($categories as $item)
                                             <option value="{{$item->category_value}}">{{$item->category_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Microns : <small>(In grams)</small></label>
-                                    <input type="text" id="pp_gms" class="form-control" name="microns" required placeholder="Enter Microns">
+                                    <label>GSM :</label>
+                                    <input type="text" id="gsm1" class="form-control" name="gsm" required placeholder="Enter GSM">
                                 </div>
                             </div>
                         </div>
                         <div class="form-seperator-dashed"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-rounded text-left close-edit-modal" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger btn-rounded text-left" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-success float-right text-right">Submit & Save</button>
                     </div>
                 </form>
@@ -221,7 +221,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.bopp-stock-pp-item') }}",
+                url: "{{ route('non-wovenfabricstock.items.view') }}",
                 data: function (d) {
                     d.status = $('#status').val();
                 }
@@ -236,11 +236,11 @@
                         return '<input type="checkbox" class="select-row" value="' + row.id + '">';
                     }
                 },
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 { data: 'item_code', name: 'item_code' },
-                { data: 'pp_size', name: 'pp_size' },
-                { data: 'pp_category', name: 'pp_category' },                                
-                { data: 'pp_gms', name: 'pp_gms' },                                
+                { data: 'non_size', name: 'size' },
+                { data: 'non_color', name: 'color' },                                
+                { data: 'non_gsm', name: 'gsm' },                                
                 { data: 'created_at', name: 'created_at' },                                
                 { data: 'action', name: 'action', orderable: false, searchable: false }                
             ],
@@ -370,23 +370,22 @@
 
 <script>
     function editRole(element){
-        var id = $(element).data('id');
-        var item_code = $(element).data('item_code');
-        var pp_size = $(element).data('pp_size');
-        var pp_category = $(element).data('pp_category');
-        var pp_gms = $(element).data('pp_gms');        
+    var id = $(element).data('id');
+    var item_code = $(element).data('item_code');
+    var non_size = $(element).data('non_size');
+    var non_color = $(element).data('non_color');
+    var non_gsm = $(element).data('non_gsm');
 
-        $('#editrole').modal('show');
-        $('#editrole').find('#roleid').val(id);
-        $('#editrole').find('#item_code1').val(item_code);
-        $('#editrole').find('#pp_size1').val(pp_size);        
-        $('#editrole').find('#pp_category').val(pp_category).trigger('change');
-        $('#editrole').find('#pp_gms').val(pp_gms);
-        
-    }
-
-    $('.close-edit-modal').on('click', function (){        
+    $('#editrole').modal('show');
+    $('#editrole').find('#roleid').val(id);
+    $('#editrole').find('#item_code1').val(item_code);
+    $('#editrole').find('#size1').val(non_size);         // ✅ updated
+    $('#editrole').find('#color1').val(non_color).trigger('change'); // ✅ updated
+    $('#editrole').find('#gsm1').val(non_gsm);           // ✅ updated
+}
+     $('.close-edit-modal').on('click', function (){        
         $('#editrole').modal('hide');
     })
+
 </script>
 @endsection

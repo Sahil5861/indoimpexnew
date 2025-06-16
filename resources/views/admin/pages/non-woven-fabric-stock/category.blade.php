@@ -186,7 +186,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.NonVovenCategory-categories') }}",
+                url: "{{ route('non-wovenfabricstock.categories.view') }}",
                 data: function (d) {
                     d.status = $('#status').val();
                 }

@@ -22,7 +22,7 @@
 
 <?php 
 	$hasBoppAccess = in_array('bopp-stock.items.view', $allowedRoutes) || in_array('bopp-stock.categories.view', $allowedRoutes);
-	$hasNonVovenAccess = in_array('admin.NonVoven.items.view', $allowedRoutes) || in_array('admin.NonVoven.categories.view', $allowedRoutes);
+	$hasNonWovenAccess = in_array('admin.NonWoven.items.view', $allowedRoutes) || in_array('admin.NonWoven.categories.view', $allowedRoutes);
 ?>
 
 <!-- Main navbar -->
@@ -347,7 +347,7 @@
 					<li class="nav-item nav-item-dropdown-lg dropdown">
 						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
 							<i class="ph-layout me-2"></i>
-							Non Voven Fabric Stock
+							Non Woven Fabric Stock
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-end">	

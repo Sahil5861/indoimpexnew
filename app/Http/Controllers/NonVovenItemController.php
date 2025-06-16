@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\NonVovenItem;
-use App\Models\NonVovenCategory;
+use App\Models\NonWovenItem;
+use App\Models\NonWovenCategory;
 use DataTables;
 
-class NonVovenItemController extends Controller
+class NonWovenItemController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = NonVovenItem::query();
+            $query = NonWovenItem::query();
 
             $data = $query->orderBy('created_at')->get();
 
@@ -46,12 +46,12 @@ class NonVovenItemController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        $categories = NonVovenCategory::all();
+        $categories = NonWovenCategory::all();
         return view('admin.pages.non-woven-fabric-stock.item_code', compact('categories'));
     }  
         public function remove(Request $request, $id)
     {
-        $item = NonVovenItem::find($id);
+        $item = NonWovenItem::find($id);
     
         if ($item && $item->delete()) {
             return redirect()->route('non-wovenfabricstock.items.view')->with('success', 'Item deleted Suuccessfully !!');
@@ -71,7 +71,7 @@ class NonVovenItemController extends Controller
         ]);
 
         if (!empty($request->id)) {
-            $item = NonVovenItem::where('id', $request->id)->first();
+            $item = NonWovenItem::where('id', $request->id)->first();
 
             $item->item_code = $request->item_code;
             $item->non_size = $request->size;
@@ -86,7 +86,7 @@ class NonVovenItemController extends Controller
             }
         }
         else{
-            $item = new NonVovenItem();
+            $item = new NonWovenItem();
 
             $item->item_code = $request->item_code;
             $item->non_size = $request->size;

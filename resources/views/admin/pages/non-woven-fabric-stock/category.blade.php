@@ -71,7 +71,7 @@
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.NonVovenCategory.save')}}" method="post">
+                <form action="{{route('admin.NonWovenCategory.save')}}" method="post">
                     @csrf
                     <div class="form-body">
                         <div class="form-seperator-dashed"></div>
@@ -115,7 +115,7 @@
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.NonVovenCategory.save')}}" method="post">
+                <form action="{{route('admin.NonWovenCategory.save')}}" method="post">
                     @csrf
                     <input type="hidden" id="roleid" name="id">
                     <div class="form-body">

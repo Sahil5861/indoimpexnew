@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\NonVovenCategory;
+use App\Models\NonWovenCategory;
 
 use Carbon\Carbon;
 use DataTables;
 
-class NonVovenCategoryController extends Controller
+class NonWovenCategoryController extends Controller
 {
     public function index(Request $request)
     {                
         if ($request->ajax()) {
-            $query = NonVovenCategory::query();
+            $query = NonWovenCategory::query();
 
             $data = $query->orderBy('id')->get();
 
@@ -31,7 +31,7 @@ class NonVovenCategoryController extends Controller
                                         <a href="#" onclick="editRole(this)" data-id="'.$row->id.'" data-name="'.$row->category_name.'" data-value="'.$row->category_value.'" class="dropdown-item">
                                             <i class="ph-pencil me-2"></i>Edit
                                         </a>
-                                        <a href="' . route('admin.NonVovenCategory.remove', $row->id) . '" data-id="' . $row->id . '" class="dropdown-item delete-button">
+                                        <a href="' . route('admin.NonWovenCategory.remove', $row->id) . '" data-id="' . $row->id . '" class="dropdown-item delete-button">
                                             <i class="ph-trash me-2"></i>Delete
                                         </a>
                                     </div>
@@ -51,25 +51,25 @@ class NonVovenCategoryController extends Controller
         ]);
 
         if (!empty($request->id)) {
-            $category = NonVovenCategory::where('id', $request->id)->first();
+            $category = NonWovenCategory::where('id', $request->id)->first();
 
             $category->category_name = $request->name;
             $category->category_value = $request->value;
 
             if ($category->save()) {
-                return redirect()->route('admin.NonVovenCategory-categories')->with('success', 'Category Updated Suuccessfully !!');
+                return redirect()->route('admin.NonWovenCategory-categories')->with('success', 'Category Updated Suuccessfully !!');
             } else {
                 return back()->with('error', 'Something went wrong !!');
             }
         }
         else{
-            $category = new NonVovenCategory();
+            $category = new NonWovenCategory();
 
             $category->category_name = $request->name;
             $category->category_value = $request->value;
 
             if ($category->save()) {
-                return redirect()->route('admin.NonVovenCategory-categories')->with('success', 'Category added Suuccessfully !!');
+                return redirect()->route('admin.NonWovenCategory-categories')->with('success', 'Category added Suuccessfully !!');
             } else {
                 return back()->with('error', 'Something went wrong !!');
             }
@@ -78,10 +78,10 @@ class NonVovenCategoryController extends Controller
 
     public function remove(Request $request, $id)
     {
-        $category = NonVovenCategory::firstwhere('id', $request->id);
+        $category = NonWovenCategory::firstwhere('id', $request->id);
 
         if ($category->delete()) {
-            return back()->with('success', 'Non Voven Category deleted Suuccessfully !!');
+            return back()->with('success', 'Non Woven Category deleted Suuccessfully !!');
         } else {
             return back()->with('error', 'Something went wrong !!');
         }

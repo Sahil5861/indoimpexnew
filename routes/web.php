@@ -30,8 +30,8 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PPCategoryController;
 use App\Http\Controllers\PPItemController;
 
-use App\Http\Controllers\NonVovenCategoryController;
-use App\Http\Controllers\NonVovenItemController;
+use App\Http\Controllers\NonWovenCategoryController;
+use App\Http\Controllers\NonWovenItemController;
 use App\Http\Controllers\MainUserController;
 use App\Http\Controllers\RolePermissionController;
 
@@ -149,14 +149,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('delete-item/{id}', [PPItemController::class, 'remove'])->name('admin.bopp-stock-pp-item.remove');
 
     // Non woven categorry
-    Route::get('admin/non-voven-categories', [NonVovenCategoryController::class, 'index'])->name('non-wovenfabricstock.categories.view');    
-    Route::post('add-non-voven-category', [NonVovenCategoryController::class, 'save'])->name('admin.NonVovenCategory.save');
-    Route::get('delete-non-category/{id}', [NonVovenCategoryController::class, 'remove'])->name('admin.NonVovenCategory.remove');
+    Route::get('admin/non-woven-categories', [NonWovenCategoryController::class, 'index'])->name('non-wovenfabricstock.categories.view');    
+    Route::post('add-non-woven-category', [NonWovenCategoryController::class, 'save'])->name('admin.NonWovenCategory.save');
+    Route::get('delete-non-category/{id}', [NonWovenCategoryController::class, 'remove'])->name('admin.NonWovenCategory.remove');
 
     // Non woven Items
-    Route::get('admin/non-voven-item', [NonVovenItemController::class, 'index'])->name('non-wovenfabricstock.items.view');    
-    Route::post('add-non-voven-item', [NonVovenItemController::class, 'save'])->name('admin.NonVovenItem.save');
-    Route::get('delete-non-voven-item/{id}', [NonVovenItemController::class, 'remove'])->name('non-wovenfabricstock.items.delete');
+    Route::get('admin/non-woven-item', [NonWovenItemController::class, 'index'])->name('non-wovenfabricstock.items.view');    
+    Route::post('add-non-woven-item', [NonWovenItemController::class, 'save'])->name('admin.NonWovenItem.save');
+    Route::get('delete-non-woven-item/{id}', [NonWovenItemController::class, 'remove'])->name('non-wovenfabricstock.items.delete');
 
 
 

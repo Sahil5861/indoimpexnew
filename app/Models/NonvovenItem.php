@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NonVovenItem extends Model
+class NonWovenItem extends Model
 {
     use HasFactory;
 
@@ -20,6 +20,6 @@ class NonVovenItem extends Model
 
     public function category()
     {
-        return $this->belongsTo(NonVovenCategory::class, 'non_color', 'category_value');
+        return $this->belongsTo(NonWovenCategory::class, 'non_color', 'category_value');
     }
 }

@@ -35,7 +35,7 @@ class PermissionController extends Controller
                                     <a href="#" onclick="editRole(this)" data-id="'.$row->id.'" data-name="'.$row->category_name.'" data-value="'.$row->category_value.'" class="dropdown-item">
                                         <i class="ph-pencil me-2"></i>Edit
                                     </a>
-                                    <a href="' . route('admin.NonVovenCategory.remove', $row->id) . '" data-id="' . $row->id . '" class="dropdown-item delete-button">
+                                    <a href="' . route('admin.NonWovenCategory.remove', $row->id) . '" data-id="' . $row->id . '" class="dropdown-item delete-button">
                                         <i class="ph-trash me-2"></i>Delete
                                     </a>
                                 </div>

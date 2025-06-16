@@ -23,7 +23,7 @@
             <div class="content">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Non Voven Item List</h5>
+                        <h5 class="card-title">Non Woven Item List</h5>
                         <div class="card-tools text-end"
                             style="display: flex; align-items:center; justify-content: space-between;">
                             <div class="btns">
@@ -73,7 +73,7 @@
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.NonVovenItem.save')}}" method="post">
+                <form action="{{route('admin.NonWovenItem.save')}}" method="post">
                     @csrf
                     <div class="form-body">
                         <div class="form-seperator-dashed"></div>
@@ -133,7 +133,7 @@
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.NonVovenItem.save')}}" method="post">
+                <form action="{{route('admin.NonWovenItem.save')}}" method="post">
                     @csrf
                     <input type="text" name="id" id="roleid"  >
                     <div class="form-body">

@@ -369,24 +369,6 @@
 </script>
 
 <script>
-//     function editRole(element){
-//     var id = $(element).data('id');
-//     var item_code = $(element).data('item_code');
-//     var non_size = $(element).data('non_size');
-//     var non_color = $(element).data('non_color');
-//     var non_gsm = $(element).data('non_gsm');
-
-//     $('#editrole').modal('show');
-//     $('#editrole').find('#roleid').val(id);
-//     $('#editrole').find('#item_code1').val(item_code);
-//     $('#editrole').find('#size1').val(non_size);        
-//     $('#editrole').find('#color1').val(non_color).trigger('change'); 
-//     $('#editrole').find('#gsm1').val(non_gsm);
-
-//      $('.close-edit-modal').on('click', function (){        
-//         $('#editrole').modal('hide');
-//     })
-// }
     function editRole(element){
         var id = $(element).data('id');
         var item_code = $(element).data('item_code');

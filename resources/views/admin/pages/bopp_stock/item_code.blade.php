@@ -271,7 +271,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
+                                    url: "{{ route('bopp-stock.items.deletemulti') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {

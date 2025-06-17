@@ -160,7 +160,7 @@ class RoleController extends Controller
 
 
 
-    public function deleteSelected(Request $request)
+    public function multidelete(Request $request)
     {
         $selectedRoles = $request->input('selected_roles');
         if (!empty($selectedRoles)) {

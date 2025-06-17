@@ -27,23 +27,26 @@ class RolePermissionController extends Controller
     }    
     public function store(Request $request)
     {
-        // dd($request->all()); exit;
+        
         $request->validate([
-            'permission' => 'required'
+            'permission' => 'sometimes|array|min:1'
         ]);
 
-        $role_permissions = RolePermission::where('role_id', $request->id)->get();
+
+        $role_permissions = RolePermission::where('role_id', $request->role_id)->get();
 
         
         if ($role_permissions) {
             RolePermission::where('role_id', $request->role_id)->delete();
         }
 
-        foreach ($request->permission as $key => $permission) {
-            RolePermission::create([
-                'role_id' => $request->role_id,
-                'permission_id' => $permission
-            ]);
+        if ($request->has('permission') && is_array($request->permission)) {            
+            foreach ($request->permission as $key => $permission) {
+                RolePermission::create([
+                    'role_id' => $request->role_id,
+                    'permission_id' => $permission
+                ]);
+            }
         }
 
         return redirect()->back()->with('status', 'Permission created');

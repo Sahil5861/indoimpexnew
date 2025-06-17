@@ -234,7 +234,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
+                                    url: "{{ route('non-wovenfabricstock.categories.deletemulti')}}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {

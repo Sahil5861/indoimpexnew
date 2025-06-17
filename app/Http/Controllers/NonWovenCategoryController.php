@@ -57,7 +57,7 @@ class NonWovenCategoryController extends Controller
             $category->category_value = $request->value;
 
             if ($category->save()) {
-                return redirect()->route('admin.NonWovenCategory-categories')->with('success', 'Category Updated Suuccessfully !!');
+                return back()->with('success', 'Category Updated Suuccessfully !!');
             } else {
                 return back()->with('error', 'Something went wrong !!');
             }
@@ -69,7 +69,7 @@ class NonWovenCategoryController extends Controller
             $category->category_value = $request->value;
 
             if ($category->save()) {
-                return redirect()->route('admin.NonWovenCategory-categories')->with('success', 'Category added Suuccessfully !!');
+                return back()->with('success', 'Category added Suuccessfully !!');
             } else {
                 return back()->with('error', 'Something went wrong !!');
             }
@@ -84,6 +84,15 @@ class NonWovenCategoryController extends Controller
             return back()->with('success', 'Non Woven Category deleted Suuccessfully !!');
         } else {
             return back()->with('error', 'Something went wrong !!');
+        }
+    }
+
+    public function multidelete(Request $request){
+        $selectedIds = $request->input('selected_roles');
+        // print_r($selectedIds); exit;
+        if (!empty($selectedIds)) {
+            NonWovenCategory::whereIn('id', $selectedIds)->delete();
+            return response()->json(['success' => true, 'message' => 'Selected Categories deleted successfully.']);
         }
     }
 }

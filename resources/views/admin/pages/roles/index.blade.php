@@ -238,7 +238,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
+                                    url: "{{ route('admin.role.deletemulti') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {

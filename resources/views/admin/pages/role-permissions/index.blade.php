@@ -1,5 +1,7 @@
 @extends('layout.base')
+<style>
 
+</style>
 @section('content')
 <div class="page-content">
     {{-- @include('layouts.sidebar') --}}
@@ -29,8 +31,8 @@
                         <form action="{{route('admin.rolepermission.save')}}" method="POST">
                             @csrf
                             <input type="hidden" name="role_id" id="role_id" value="{{$id}}">
-                            <div class="row">
-                                @foreach ($permissionAll as $permission)                                
+                            <div class="row g-3 gx-2">
+                                @foreach ($permissionAll as $key => $permission)                                
                                     <div class="col-lg-3 col-sm-6 border p-4">                                    
                                         <div class="form-check">
                                             <input 
@@ -41,7 +43,7 @@
                                                 class="form-check-input"
                                                 {{ in_array($permission->id, $rolePermissons->toArray()) ? 'checked' : '' }}
                                             >
-                                            <label for="permission_{{ $permission->id }}" class="form-check-label">
+                                            <label for="permission_{{ $permission->id }}" class="form-check-label" style="user-select: none; cursor: pointer;">
                                                 {{ $permission->name }}
                                             </label>
                                         </div>
@@ -59,110 +61,6 @@
         </div>
     </div>
 </div>
-
-<div id="users" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bopp" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Roles</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('admin.role.create.post')}}" method="post">
-                    @csrf
-                    <div class="form-body">
-                        <div class="form-seperator-dashed"></div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Role Name :</label>
-                                    <input type="text" id="name" class="form-control" name="name" required placeholder="Enter Role Name">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-seperator-dashed"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-rounded text-left" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success float-right text-right">Submit & Save</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>    
-</div>
-
-<div id="editrole" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bopp" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Roles</h4>
-                <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('admin.role.create.post')}}" method="post">
-                    @csrf
-                    <input type="hidden" id="roleid" name="id">
-                    <div class="form-body">
-                        <div class="form-seperator-dashed"></div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Role Name :</label>
-                                    <input type="text" id="rolename" class="form-control" name="name" required placeholder="Enter Role Name">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-seperator-dashed"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-rounded text-left close-edit-modal" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success float-right text-right">Submit & Save</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>    
-</div>
-
-<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="importModalLabel">Import ROles</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="importForm" action="{{route('admin.role.import')}}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="csv_file">Select CSV File</label>
-                        <input type="file" name="csv_file" class="form-control" required value="{{old('csv_file')}}">
-                    </div>
-                    <a class="btn btn-success csvSample" href="{{ route('sample-file-download-role') }}">Download
-                        Sample</a>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button " class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="submit" form="importForm" class="btn btn-primary">Import</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -200,58 +98,7 @@
                         $(this).prop('checked', isChecked);
                     });
                 });
-
-                $('#delete-selected').on('click', function () {
-                    var selectedIds = $('.select-row:checked').map(function () {
-                        return this.value;
-                    }).get();
-
-                    if (selectedIds.length > 0) {
-                        Swal.fire({
-                            title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
-                                    method: 'DELETE',
-                                    data: { selected_roles: selectedIds },
-                                    success: function (response) {
-                                        RoleTable.ajax.reload(); // Refresh the page
-                                        Swal.fire(
-                                            'Deleted!',
-                                            response.success,
-                                            'success'
-                                        );
-                                    },
-                                    error: function (xhr) {
-                                        Swal.fire(
-                                            'Error!',
-                                            'Something went wrong.',
-                                            'error'
-                                        );
-                                    }
-                                });
-                            }
-                        })
-
-
-                    }
-                    else {
-                        Swal.fire(
-                            'Error!',
-                            'Please select at least one role to delete.',
-                            'error'
-                        );
-                    }
-                })
-
-
+    
                 $('.status-toggle').on('click', function () {
                     var roleId = $(this).data('id');
                     var status = $(this).is(':checked') ? 1 : 0;

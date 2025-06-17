@@ -88,6 +88,7 @@
                                 <div class="form-group">
                                     <label>Main Module</label>
                                     <select name="main_module" id="main_module" class="form-control select2" onchange="updateSubmodule(this)">
+                                        <option value="">Select</option>
                                         @foreach ($modules as $module)
                                             <option value="{{$module->id}}">{{$module->name}}</option>
                                         @endforeach
@@ -253,7 +254,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
+                                    url: "{{ route('admin.permission.deleteSelected') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {

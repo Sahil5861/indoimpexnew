@@ -100,7 +100,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/role/delete/{id}', [RoleController::class, 'remove'])->name('admin.role.delete');
     Route::post('admin/role/create', [RoleController::class, 'store'])->name('admin.role.create.post');
     Route::put('admin/role/edit/{id}', [RoleController::class, 'store'])->name('admin.role.edit.post'); // Updated to PUT method
-    Route::delete('admin/role/delete-selected', [RoleController::class, 'deleteSelected'])->name('admin.role.deleteSelected');
+    Route::delete('admin-role-deletemulti', [RoleController::class, 'multidelete'])->name('admin.role.deletemulti');
     Route::get('admin/role/export', [RoleController::class, 'export'])->name('admin.role.export');
     Route::post('admin/role/import', [RoleController::class, 'import'])->name('admin.role.import');
     Route::get('/sample-file-download-role', [RoleController::class, 'sampleFileDownloadRole'])->name('sample-file-download-role');
@@ -125,10 +125,10 @@ Route::middleware(['auth'])->group(function () {
     // -----------------------------------Permission Routes--------------------------------------
     Route::get('admin/permissions', [PermissionController::class, 'index'])->name('admin.permissions');
     Route::post('admin-permision-save', [PermissionController::class, 'store'])->name('admin.permission.save');
+    Route::delete('role-delete-selected', [PermissionController::class, 'multidelete'])->name('admin.permission.deleteSelected');
 
     Route::post('create/feature', [PermissionController::class, 'createFeature'])->name('admin.feature.save');
     Route::post('create/module', [PermissionController::class, 'createModule'])->name('admin.module.save');
-
 
     // main admin
     Route::get('admin/main_users', [MainUserController::class, 'index'])->name('admin.mainUsers');
@@ -142,21 +142,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/bopp-stock-pp-categories', [PPCategoryController::class, 'index'])->name('bopp-stock.categories.view');    
     Route::post('add-category', [PPCategoryController::class, 'save'])->name('admin.bopp-stock-pp-categories.save');
     Route::get('delete-category/{id}', [PPCategoryController::class, 'remove'])->name('admin.bopp-stock-pp-categories.remove');
+    Route::delete('boppstock-delete-selected-categories', [PPCategoryController::class, 'multidelete'])->name('bopp-stock.categories.deletemulti');
 
     // PP Items
     Route::get('admin/bopp-stock-pp-item', [PPItemController::class, 'index'])->name('boppstock.items.view');    
     Route::post('add-item', [PPItemController::class, 'save'])->name('admin.bopp-stock-pp-item.save');
     Route::get('delete-item/{id}', [PPItemController::class, 'remove'])->name('admin.bopp-stock-pp-item.remove');
+    Route::delete('boppstock-delete-selected-items', [PPCategoryController::class, 'multidelete'])->name('bopp-stock.items.deletemulti');
 
     // Non woven categorry
     Route::get('admin/non-woven-categories', [NonWovenCategoryController::class, 'index'])->name('non-wovenfabricstock.categories.view');    
     Route::post('add-non-woven-category', [NonWovenCategoryController::class, 'save'])->name('admin.NonWovenCategory.save');
     Route::get('delete-non-category/{id}', [NonWovenCategoryController::class, 'remove'])->name('admin.NonWovenCategory.remove');
+    Route::delete('non-woven-delete-selected-categories', [NonWovenCategoryController::class, 'multidelete'])->name('non-wovenfabricstock.categories.deletemulti');
 
     // Non woven Items
     Route::get('admin/non-woven-item', [NonWovenItemController::class, 'index'])->name('non-wovenfabricstock.items.view');    
     Route::post('add-non-woven-item', [NonWovenItemController::class, 'save'])->name('admin.NonWovenItem.save');
     Route::get('delete-non-woven-item/{id}', [NonWovenItemController::class, 'remove'])->name('non-wovenfabricstock.items.delete');
+    Route::delete('non-woven-delete-selected-items', [NonWovenItemController::class, 'multidelete'])->name('non-wovenfabricstock.items.deletemulti');
 
 
 

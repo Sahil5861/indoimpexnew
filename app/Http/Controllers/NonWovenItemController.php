@@ -14,7 +14,7 @@ class NonWovenItemController extends Controller
         if ($request->ajax()) {
             $query = NonWovenItem::query();
 
-            $data = $query->orderBy('created_at')->get();
+            $data = $query->orderBy('created_at', 'desc')->get();
 
             return DataTables::of($query)
                 ->addIndexColumn()
@@ -99,6 +99,15 @@ class NonWovenItemController extends Controller
             } else {
                 return back()->with('error', 'Something went wrong !!');
             }
+        }
+    }
+
+    public function multidelete(Request $request){
+        $selectedIds = $request->input('selected_roles');
+        // print_r($selectedIds); exit;
+        if (!empty($selectedIds)) {
+            NonWovenItem::whereIn('id', $selectedIds)->delete();
+            return response()->json(['success' => true, 'message' => 'Selected Items deleted successfully.']);
         }
     }
 }

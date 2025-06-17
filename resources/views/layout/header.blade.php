@@ -410,7 +410,12 @@
 						@endif
 					@endforeach --}}
 
-
+					<li class="nav-item">
+						<a href="{{route('job-type.view')}}" class="navbar-nav-link rounded">
+							<i class="ph-layout me-2"></i>
+							Job Type
+						</a>
+					</li>
 					
 					
 					<li class="nav-item nav-item-dropdown-lg dropdown">

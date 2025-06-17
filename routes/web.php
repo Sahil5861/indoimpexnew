@@ -40,6 +40,8 @@ use App\Http\Controllers\NonWovenItemController;
 use App\Http\Controllers\MainUserController;
 use App\Http\Controllers\RolePermissionController;
 
+use App\Http\Controllers\JobTypeController;
+
 
 // Dealersauth routes
 use App\Http\Controllers\DealerAuthController;
@@ -179,7 +181,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('delete-pp-woven-item/{id}', [PPWovenItemController::class, 'remove'])->name('admin.PPWovenItem.remove');
     Route::delete('pp-woven-delete-selected-items', [PPWovenItemController::class, 'multidelete'])->name('pp-wovenfabricstock.items.deletemulti');
 
-
+    // Job Type
+    Route::get('admin/job-type', [JobTypeController::class, 'index'])->name('job-type.view');    
+    Route::post('add-job-type', [JobTypeController::class, 'save'])->name('admin.job-type.save');
+    Route::get('delete-job-type/{id}', [JobTypeController::class, 'remove'])->name('admin.job-type.remove');
+    Route::delete('job-delete-selected-type', [JobTypeController::class, 'multidelete'])->name('job-type.deletemulti');
 
     Route::get('update-submodule', function (Request $request){
         $id = $request->id;

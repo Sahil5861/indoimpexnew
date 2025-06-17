@@ -9,7 +9,7 @@ use App\Models\PPItem;
 use Carbon\Carbon;
 use DataTables;
 
-class PPItemController extends Controller
+class BoppItemController extends Controller
 {
     public function index(Request $request)
     {                
@@ -32,9 +32,9 @@ class PPItemController extends Controller
                                         <a href="#" onclick="editRole(this)" 
                                         data-id="'.$row->id.'" 
                                         data-item_code="'.$row->item_code.'" 
-                                        data-pp_size="'.$row->pp_size.'" 
-                                        data-pp_category="'.$row->pp_category.'" 
-                                        data-pp_gms="'.$row->pp_gms.'" class="dropdown-item">
+                                        data-pp_size="'.$row->bopp_size.'" 
+                                        data-pp_category="'.$row->bopp_category.'" 
+                                        data-pp_gms="'.$row->bopp_micron.'" class="dropdown-item">
                                             <i class="ph-pencil me-2"></i>Edit
                                         </a>
                                         <a href="' . route('admin.bopp-stock-pp-categories.remove', $row->id) . '" data-id="' . $row->id . '" class="dropdown-item delete-button">
@@ -68,9 +68,9 @@ class PPItemController extends Controller
             $item = PPItem::where('id', $request->id)->first();
 
             $item->item_code = $request->item_code;
-            $item->pp_size = $request->size;
-            $item->pp_category = $request->category_value;
-            $item->pp_gms = $request->microns;
+            $item->bopp_size = $request->size;
+            $item->bopp_category = $request->category_value;
+            $item->bopp_micron = $request->microns;
 
             if ($item->save()) {
                 return redirect()->route('admin.bopp-stock-pp-item')->with('success', 'Item Updated Suuccessfully !!');
@@ -82,9 +82,9 @@ class PPItemController extends Controller
             $item = new PPItem();
 
             $item->item_code = $request->item_code;
-            $item->pp_size = $request->size;
-            $item->pp_category = $request->category_value;
-            $item->pp_gms = $request->microns;
+            $item->bopp_size = $request->size;
+            $item->bopp_category = $request->category_value;
+            $item->bopp_micron = $request->microns;
             
             if ($item->save()) {
                 return redirect()->route('admin.bopp-stock-pp-item')->with('success', 'Item added Suuccessfully !!');

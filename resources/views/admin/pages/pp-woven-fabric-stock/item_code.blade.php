@@ -44,12 +44,12 @@
                                     <tr>  
                                         <th><input type="checkbox" id="select-all"></th>                                      
                                         <th>S.NO</th>
+                                        <th class="text-center">Actions</th>                                        
                                         <th>Item Code</th>
                                         <th>PP Size</th>
                                         <th>PP Category Value</th>                                        
                                         <th>Micron </th>                                        
                                         <th>Created At</th>                                                                                
-                                        <th class="text-center">Actions</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -104,8 +104,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Microns : <small>(In grams)</small></label>
-                                    <input type="text" id="microns" class="form-control" name="microns" required placeholder="Enter Microns">
+                                    <label>GMS : </label>
+                                    <input type="text" id="microns" class="form-control" name="gms" required placeholder="Enter Microns">
                                 </div>
                             </div>
                         </div>
@@ -165,8 +165,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Microns : <small>(In grams)</small></label>
-                                    <input type="text" id="pp_gms" class="form-control" name="microns" required placeholder="Enter Microns">
+                                    <label>GMS : </label>
+                                    <input type="text" id="pp_gms" class="form-control" name="gms" required placeholder="Enter Microns">
                                 </div>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('boppstock.items.view') }}",
+                url: "{{ route('ppwovenfabricstock.items.view') }}",
                 data: function (d) {
                     d.status = $('#status').val();
                 }
@@ -238,11 +238,11 @@
                 },
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'item_code', name: 'item_code' },
-                { data: 'bopp_size', name: 'bopp_size' },
-                { data: 'bopp_category', name: 'bopp_category' },                                
-                { data: 'bopp_micron', name: 'bopp_micron' },                                
-                { data: 'created_at', name: 'created_at' },                                
-                { data: 'action', name: 'action', orderable: false, searchable: false }                
+                { data: 'action', name: 'action', orderable: false, searchable: false },                
+                { data: 'pp_size', name: 'pp_size' },
+                { data: 'pp_category', name: 'pp_category' },                                
+                { data: 'pp_gms', name: 'pp_gms' },                                
+                { data: 'created_at', name: 'created_at' }                                
             ],
 
             order: [[1, 'desc']],
@@ -271,7 +271,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('bopp-stock.items.deletemulti') }}",
+                                    url: "{{ route('pp-wovenfabricstock.items.deletemulti') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {

@@ -8,7 +8,7 @@ use App\Models\PPCategory;
 use Carbon\Carbon;
 use DataTables;
 
-class PPCategoryController extends Controller
+class BoppCategoryController extends Controller
 {
     public function index(Request $request)
     {                

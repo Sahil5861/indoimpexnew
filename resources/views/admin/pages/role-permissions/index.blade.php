@@ -49,6 +49,12 @@
                                         </div>
                                     </div>
                                 @endforeach
+
+                                {{-- @foreach ($permissionAll as $key => $permission)
+                                    <div class="col-lg-3 col-sm-6 border p-4">
+                                        
+                                    </div>                                   
+                                @endforeach --}}
                             </div>
                             <hr>
                             <div class="my-3">

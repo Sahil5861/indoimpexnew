@@ -139,6 +139,13 @@
 	<!-- /main navbar -->
 
 
+	@php
+		use App\Models\Module;
+
+		$parentNavs = Module::where('parent_id', 0)->get();
+	@endphp
+
+
 
 <!-- Navigation -->		
 	<hr style="margin: 0;">
@@ -341,8 +348,6 @@
 					</li>
 					@endif
 
-
-
 					@if (hasPermission('non-wovenfabricstock.items.view') || hasPermission('non-wovenfabricstock.categories.view') )						
 					<li class="nav-item nav-item-dropdown-lg dropdown">
 						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
@@ -359,7 +364,53 @@
 							@endif
 						</div>
 					</li>
-					@endif	
+					@endif
+					
+					<li class="nav-item nav-item-dropdown-lg dropdown">
+						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+							<i class="ph-layout me-2"></i>
+							PP-Woven Fabric Stock
+						</a>
+
+						<div class="dropdown-menu dropdown-menu-end">	
+							@if (hasPermission('non-wovenfabricstock.items.view') )													
+							<a href="{{route('ppwovenfabricstock.items.view')}}" class="dropdown-item rounded">PP Item List</a>
+							@endif
+							@if (hasPermission('non-wovenfabricstock.categories.view'))								
+							<a href="{{route('ppwovenfabricstock.categories.view')}}" class="dropdown-item rounded">PP Category List</a>
+							@endif
+						</div>
+					</li>
+
+
+					{{-- @foreach ($parentNavs as $parent)
+						@php
+							$childNavs = Module::where('parent_id', $parent->id)->get();
+						@endphp
+
+						@if ($childNavs->count() > 0)							
+							<li class="nav-item nav-item-dropdown-lg dropdown">
+								<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
+									<i class="ph-layout me-2"></i>
+									{{ $parent->name }}
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									@foreach ($childNavs as $child)
+										<a href="#" class="dropdown-item rounded">{{ $child->route_url }}</a>
+									@endforeach
+								</div>
+							</li>
+						@else							
+							<li class="nav-item">
+								<a href="#" class="navbar-nav-link rounded">
+									<i class="ph-layout me-2"></i>
+									{{ $parent->name }}
+								</a>
+							</li>
+						@endif
+					@endforeach --}}
+
+
 					
 					
 					<li class="nav-item nav-item-dropdown-lg dropdown">
@@ -374,79 +425,6 @@
 						</div>
 					</li>
 
-					
-
-					{{-- <li class="nav-item nav-item-dropdown-lg dropdown">
-						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
-							<i class="ph-layout me-2"></i>
-							Module
-						</a>
-
-						<div class="dropdown-menu dropdown-menu-end">													
-							<a href="#" class="dropdown-item rounded">Link1 </a>
-							<a href="#" class="dropdown-item rounded">Link2</a>
-							<a href="#" class="dropdown-item rounded">Link3</a>
-							<a href="#" class="dropdown-item rounded">Link4</a>
-						</div>
-					</li>
-
-					<li class="nav-item nav-item-dropdown-lg dropdown">
-						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
-							<i class="ph-layout me-2"></i>
-							Module 2
-						</a>
-
-						<div class="dropdown-menu dropdown-menu-end">													
-							<a href="#" class="dropdown-item rounded">Link1 </a>
-							<a href="#" class="dropdown-item rounded">Link2</a>
-							<a href="#" class="dropdown-item rounded">Link3</a>
-							<a href="#" class="dropdown-item rounded">Link4</a>
-						</div>
-					</li> --}}
-					{{--<li class="nav-item nav-item-dropdown-lg dropdown">
-						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
-							<i class="ph-arrows-clockwise me-2"></i>
-							Switch
-						</a>
-
-						<div class="dropdown-menu dropdown-menu-end">
-							<div class="dropdown-submenu dropdown-submenu-start">
-								<a href="#" class="dropdown-item dropdown-toggle">
-									<i class="ph-layout me-2"></i>
-									Layouts
-								</a>
-								<div class="dropdown-menu">
-									<a href="../../layout_1/full/index.html" class="dropdown-item">Default layout</a>
-									<a href="../../layout_2/full/index.html" class="dropdown-item">Layout 2</a>
-									<a href="../../layout_3/full/index.html" class="dropdown-item">Layout 3</a>
-									<a href="../../layout_4/full/index.html" class="dropdown-item">Layout 4</a>
-									<a href="index.html" class="dropdown-item active">Layout 5</a>
-									<a href="../../layout_6/full/index.html" class="dropdown-item">Layout 6</a>
-									<a href="../../layout_7/full/index.html" class="dropdown-item disabled">
-										Layout 7
-										<span class="opacity-75 fs-sm ms-auto">Coming soon</span>
-									</a>
-								</div>
-							</div>
-							<div class="dropdown-submenu dropdown-submenu-start">
-								<a href="#" class="dropdown-item dropdown-toggle">
-									<i class="ph-swatches me-2"></i>
-									Themes
-								</a>
-								<div class="dropdown-menu">
-									<a href="index.html" class="dropdown-item active">Default</a>
-									<a href="../../../LTR/material/full/index.html" class="dropdown-item disabled">
-										Material
-										<span class="opacity-75 fs-sm ms-auto">Coming soon</span>
-									</a>
-									<a href="../../../LTR/clean/full/index.html" class="dropdown-item disabled">
-										Clean
-										<span class="opacity-75 fs-sm ms-auto">Coming soon</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</li> --}}
 				</ul>
 			</div>
 

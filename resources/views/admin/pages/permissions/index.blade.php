@@ -28,6 +28,7 @@
                             style="display: flex; align-items:center; justify-content: space-between;">
                             <div class="btns">
                                 <a href="#" class="text-white btn btn-primary" data-toggle="modal" data-target="#users">Add Permissions</a>
+                                {{-- <a href="#" class="text-white btn btn-primary" data-toggle="modal" data-target="#modules">Add Modules</a> --}}
                                 <button class="btn btn-danger" id="delete-selected">Delete Selected</button>
                                 <br><br>
                                 {{-- <select name="status" id="status" class="form-control">
@@ -75,6 +76,69 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Permissions</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('admin.permission.save')}}" method="post">
+                    @csrf
+                    <div class="form-body">
+                        <div class="form-seperator-dashed"></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Main Module</label>
+                                    <select name="main_module" id="main_module" class="form-control select2" onchange="updateSubmodule(this)">
+                                        <option value="">Select</option>
+                                        @foreach ($modules as $module)
+                                            <option value="{{$module->id}}">{{$module->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Sub Module</label>
+                                    <select name="sub_module" id="sub_module" class="form-control select2">                                        
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Action</label>
+                                    <select name="action" id="action" class="form-control select2">                                        
+                                        <option value="">Select Action</option>
+                                        <option value="View">View</option>
+                                        <option value="Create">Create</option>
+                                        <option value="Update">Update</option>
+                                        <option value="Delete">Delete</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-seperator-dashed"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-rounded text-left" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success float-right text-right">Submit & Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>    
+</div>
+
+<div id="modules" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bopp" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Module</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
             </div>

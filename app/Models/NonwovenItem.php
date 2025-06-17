@@ -9,7 +9,7 @@ class NonWovenItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'non_woven';
+    protected $table = 'master_non';
 
     protected $fillable = [
         'item_code',

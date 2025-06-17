@@ -44,10 +44,10 @@
                                     <tr>  
                                         <th><input type="checkbox" id="select-all"></th>                                      
                                         <th>S.NO</th>
+                                        <th class="text-center">Actions</th>                                        
                                         <th>Category Name</th>
                                         <th>Category Name</th>
                                         <th>Created At</th>                                                                                
-                                        <th class="text-center">Actions</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -202,10 +202,10 @@
                     }
                 },
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'action', name: 'action', orderable: false, searchable: false },                
                 { data: 'category_name', name: 'role_name' },
                 { data: 'category_value', name: 'category_value' },
-                { data: 'created_at', name: 'created_at' },                                
-                { data: 'action', name: 'action', orderable: false, searchable: false }                
+                { data: 'created_at', name: 'created_at' }                                                
             ],
 
             order: [[1, 'asc']],
@@ -234,7 +234,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
+                                    url: "{{ route('bopp-stock.categories.deletemulti') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {

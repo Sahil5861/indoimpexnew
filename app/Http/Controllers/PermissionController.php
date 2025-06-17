@@ -109,6 +109,15 @@ class PermissionController extends Controller
         return redirect('permissions')->with('status', 'Permission Deleted');
     }
 
+    public function multidelete(Request $request){
+        $selectedIds = $request->input('selected_roles');
+        // print_r($selectedIds); exit;
+        if (!empty($selectedIds)) {
+            Permission::whereIn('id', $selectedIds)->delete();
+            return response()->json(['success' => true, 'message' => 'Selected Categories deleted successfully.']);
+        }
+    }
+
 
     // public function createModule(Request $request){
     //     $request->validate([

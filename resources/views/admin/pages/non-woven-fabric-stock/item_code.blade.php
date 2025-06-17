@@ -44,12 +44,12 @@
                                     <tr>  
                                         <th><input type="checkbox" id="select-all"></th>                                      
                                         <th>S.NO</th>
+                                        <th class="text-center">Actions</th>                                        
                                         <th>Item Code</th>
                                         <th>Item Size</th>
                                         <th>Item Color</th>                                        
                                         <th>GSM </th>                                        
                                         <th>Created At</th>                                                                                
-                                        <th class="text-center">Actions</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,13 +129,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Item</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <form action="{{route('admin.NonWovenItem.save')}}" method="post">
                     @csrf
-                    <input type="text" name="id" id="roleid"  >
+                    <input type="hidden" name="id" id="roleid"  >
                     <div class="form-body">
                         <div class="form-seperator-dashed"></div>
                         <div class="row">
@@ -173,7 +173,7 @@
                         <div class="form-seperator-dashed"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-rounded text-left" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger btn-rounded text-left close-edit-modal" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-success float-right text-right">Submit & Save</button>
                     </div>
                 </form>
@@ -237,12 +237,12 @@
                     }
                 },
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                { data: 'action', name: 'action', orderable: false, searchable: false },                
                 { data: 'item_code', name: 'item_code' },
                 { data: 'non_size', name: 'size' },
                 { data: 'non_color', name: 'color' },                                
                 { data: 'non_gsm', name: 'gsm' },                                
-                { data: 'created_at', name: 'created_at' },                                
-                { data: 'action', name: 'action', orderable: false, searchable: false }                
+                { data: 'created_at', name: 'created_at' }                                
             ],
 
             order: [[1, 'desc']],
@@ -271,7 +271,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('admin.role.deleteSelected') }}",
+                                    url: "{{ route('non-wovenfabricstock.items.deletemulti') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {
@@ -372,16 +372,16 @@
     function editRole(element){
         var id = $(element).data('id');
         var item_code = $(element).data('item_code');
-        var non_size = $(element).data('size');
-        var non_color = $(element).data('color');
-        var non_gsm = $(element).data('gsm');        
+        var non_size = $(element).data('non_size');
+        var non_color = $(element).data('non_color');
+        var non_gsm = $(element).data('non_gsm');        
 
         $('#editrole').modal('show');
         $('#editrole').find('#roleid').val(id);
         $('#editrole').find('#item_code1').val(item_code);
-        $('#editrole').find('#non_size1').val(non_size);        
-        $('#editrole').find('#non_color').val(non_color).trigger('change');
-        $('#editrole').find('#non_gsm').val(non_gsm);
+        $('#editrole').find('#size1').val(non_size);        
+        $('#editrole').find('#color1').val(non_color).trigger('change');
+        $('#editrole').find('#gsm1').val(non_gsm);
         
     }
 

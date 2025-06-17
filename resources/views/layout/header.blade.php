@@ -322,7 +322,7 @@
 					</li> --}}
 
 
-					@if (hasPermission('boppstock.items.view') || hasPermission('bopp-stock.categories.view') )						
+					@if (hasPermission('boppstock.items.view') || hasPermission('boppstock.categories.view') )						
 					<li class="nav-item nav-item-dropdown-lg dropdown">
 						<a href="#" class="navbar-nav-link dropdown-toggle rounded" data-bs-toggle="dropdown">
 							<i class="ph-layout me-2"></i>
@@ -370,7 +370,7 @@
 
 						<div class="dropdown-menu dropdown-menu-end">													
 							<a href="{{route('admin.role')}}" class="dropdown-item rounded">Roles </a>							
-							<a href="{{route('admin.mainUsers')}}" class="dropdown-item rounded">Users </a>							
+							{{-- <a href="{{route('admin.mainUsers')}}" class="dropdown-item rounded">Users </a>							 --}}
 						</div>
 					</li>
 

@@ -104,4 +104,12 @@ class PPItemController extends Controller
             return redirect()->route('boppstock.items.view')->with('error', 'Something went wrong!');
         }
     }
+
+    public function multidelete(Request $request){
+        $selectedIds = $request->input('selected_roles');        
+        if (!empty($selectedIds)) {
+            PPItem::whereIn('id', $selectedIds)->delete();
+            return response()->json(['success' => true, 'message' => 'Selected Items deleted successfully.']);
+        }
+    }
 }

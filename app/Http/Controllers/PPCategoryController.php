@@ -79,11 +79,21 @@ class PPCategoryController extends Controller
     public function remove(Request $request, $id)
     {
         $category = PPCategory::firstwhere('id', $request->id);
-
+        
         if ($category->delete()) {
+            PPItem::whereIn('category_id', $id)->delete();
             return back()->with('success', 'PPCategory deleted Suuccessfully !!');
         } else {
             return back()->with('error', 'Something went wrong !!');
+        }
+    }
+
+    public function multidelete(Request $request){
+        $selectedIds = $request->input('selected_roles');
+        // print_r($selectedIds); exit;
+        if (!empty($selectedIds)) {
+            PPCategory::whereIn('id', $selectedIds)->delete();
+            return response()->json(['success' => true, 'message' => 'Selected Categories deleted successfully.']);
         }
     }
 }

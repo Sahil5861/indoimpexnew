@@ -20,7 +20,10 @@ class RolePermissionController extends Controller
         
         $rolePermissons = RolePermission::where('role_id', $id)->pluck('permission_id');
 
+        // $permissionAll = Permission::all()->groupBy('main_module');
         $permissionAll = Permission::all();
+
+        // dd($permissionAll); exit;
 
                 
         return view('admin.pages.role-permissions.index', compact('rolePermissons', 'permissionAll', 'id')); 

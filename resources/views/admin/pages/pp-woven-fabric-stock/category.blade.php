@@ -9,7 +9,7 @@
                 <div class="page-header-content d-lg-flex">
                     <div class="d-flex">
                         <h4 class="page-title mb-0">
-                            Dashboard - <span class="fw-normal">PP Item List</span>
+                            Dashboard - <span class="fw-normal">PP Category List</span>
                         </h4>
                         <a href="#page_header"
                             class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
@@ -23,11 +23,11 @@
             <div class="content">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">PP Item List</h5>
+                        <h5 class="card-title">PP Category List</h5>
                         <div class="card-tools text-end"
                             style="display: flex; align-items:center; justify-content: space-between;">
                             <div class="btns">
-                                <a href="#" class="text-white btn btn-primary" data-toggle="modal" data-target="#users">Add Item</a>
+                                <a href="#" class="text-white btn btn-primary" data-toggle="modal" data-target="#users">Add Category</a>
                                 <button class="btn btn-danger" id="delete-selected">Delete Selected</button>                                
                             </div>                            
 
@@ -44,12 +44,10 @@
                                     <tr>  
                                         <th><input type="checkbox" id="select-all"></th>                                      
                                         <th>S.NO</th>
-                                        <th>Item Code</th>
-                                        <th>PP Size</th>
-                                        <th>PP Category Value</th>                                        
-                                        <th>Micron </th>                                        
-                                        <th>Created At</th>                                                                                
                                         <th class="text-center">Actions</th>                                        
+                                        <th>Category Name</th>                                        
+                                        <th>Category Value</th>                                        
+                                        <th>Created At</th>                                                                                
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,47 +66,32 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add Item</h4>
+                <h4 class="modal-title">Add Category</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.PPWovenItem.save')}}" method="post">
+                <form action="{{route('admin.PPWovenCategory.save')}}" method="post">
                     @csrf
                     <div class="form-body">
                         <div class="form-seperator-dashed"></div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Item Code :</label>
-                                    <input type="text" id="item_code" class="form-control" name="item_code" required placeholder="Enter Item Name">
+                                    <label>Category Name :</label>
+                                    <input type="text" id="name" class="form-control" name="name" required placeholder="Enter Category Name">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Item Size :</label>
-                                    <input type="text" id="size" class="form-control" name="size" required placeholder="Enter Item Value">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Item Category :</label>
-                                    <select name="category_value" id="category_value" class="form-control select2">
-                                        @foreach ($categories as $item)
-                                            <option value="{{$item->category_value}}">{{$item->category_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Microns : <small>(In grams)</small></label>
-                                    <input type="text" id="microns" class="form-control" name="microns" required placeholder="Enter Microns">
+                                    <label>Category value :</label>
+                                    <input type="text" id="value" class="form-control" name="value" required placeholder="Enter Category Value">
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="form-seperator-dashed"></div>
                     </div>
                     <div class="modal-footer">
@@ -127,12 +110,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Item</h4>
+                <h4 class="modal-title">Edit Category</h4>
                 <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.PPWovenItem.save')}}" method="post">
+                <form action="{{route('admin.PPWovenCategory.save')}}" method="post">
                     @csrf
                     <input type="hidden" id="roleid" name="id">
                     <div class="form-body">
@@ -140,33 +123,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Item Code :</label>
-                                    <input type="text" id="item_code1" class="form-control" name="item_code" required placeholder="Enter Item Name">
+                                    <label>Category Name :</label>
+                                    <input type="text" id="rolename" class="form-control" name="name" required placeholder="Enter Category Name">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Item Size :</label>
-                                    <input type="text" id="pp_size1" class="form-control" name="size" required placeholder="Enter Item Value">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Item Category :</label>
-                                    <select name="category_value" id="pp_category" class="form-control select2">
-                                        @foreach ($categories as $item)
-                                            <option value="{{$item->category_value}}">{{$item->category_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Microns : <small>(In grams)</small></label>
-                                    <input type="text" id="pp_gms" class="form-control" name="microns" required placeholder="Enter Microns">
+                                    <label>Category value :</label>
+                                    <input type="text" id="rolevalue" class="form-control" name="value" required placeholder="Enter Category Value">
                                 </div>
                             </div>
                         </div>
@@ -221,7 +186,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('boppstock.items.view') }}",
+                url: "{{ route('ppwovenfabricstock.categories.view') }}",
                 data: function (d) {
                     d.status = $('#status').val();
                 }
@@ -237,15 +202,13 @@
                     }
                 },
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'item_code', name: 'item_code' },
-                { data: 'bopp_size', name: 'bopp_size' },
-                { data: 'bopp_category', name: 'bopp_category' },                                
-                { data: 'bopp_micron', name: 'bopp_micron' },                                
-                { data: 'created_at', name: 'created_at' },                                
-                { data: 'action', name: 'action', orderable: false, searchable: false }                
+                { data: 'action', name: 'action', orderable: false, searchable: false },                
+                { data: 'category_name', name: 'role_name' },
+                { data: 'category_value', name: 'category_value' },
+                { data: 'created_at', name: 'created_at' }                                                
             ],
 
-            order: [[1, 'desc']],
+            order: [[1, 'asc']],
             drawCallback: function (settings) {
                 $('#select-all').on('click', function () {
                     var isChecked = this.checked;
@@ -271,7 +234,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{ route('bopp-stock.items.deletemulti') }}",
+                                    url: "{{ route('pp-wovenfabricstock.categories.deletemulti') }}",
                                     method: 'DELETE',
                                     data: { selected_roles: selectedIds },
                                     success: function (response) {
@@ -370,19 +333,16 @@
 
 <script>
     function editRole(element){
-        var id = $(element).data('id');
-        var item_code = $(element).data('item_code');
-        var pp_size = $(element).data('pp_size');
-        var pp_category = $(element).data('pp_category');
-        var pp_gms = $(element).data('pp_gms');        
+        var roleId = $(element).data('id');
+        var roleName = $(element).data('name');
+        var roleValue = $(element).data('value');
+
+        console.log(roleId, roleName);
 
         $('#editrole').modal('show');
-        $('#editrole').find('#roleid').val(id);
-        $('#editrole').find('#item_code1').val(item_code);
-        $('#editrole').find('#pp_size1').val(pp_size);        
-        $('#editrole').find('#pp_category').val(pp_category).trigger('change');
-        $('#editrole').find('#pp_gms').val(pp_gms);
-        
+        $('#editrole').find('#roleid').val(roleId);
+        $('#editrole').find('#rolename').val(roleName);        
+        $('#editrole').find('#rolevalue').val(roleValue)
     }
 
     $('.close-edit-modal').on('click', function (){        

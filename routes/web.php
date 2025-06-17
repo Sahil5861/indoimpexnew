@@ -27,8 +27,13 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\PPCategoryController;
-use App\Http\Controllers\PPItemController;
+use App\Http\Controllers\BoppCategoryController;
+use App\Http\Controllers\BoppItemController;
+
+use App\Http\Controllers\PPWovenCategoryController;
+use App\Http\Controllers\PPWovenItemController;
+
+
 
 use App\Http\Controllers\NonWovenCategoryController;
 use App\Http\Controllers\NonWovenItemController;
@@ -139,16 +144,16 @@ Route::middleware(['auth'])->group(function () {
 
     // PP categories
 
-    Route::get('admin/bopp-stock-pp-categories', [PPCategoryController::class, 'index'])->name('bopp-stock.categories.view');    
-    Route::post('add-category', [PPCategoryController::class, 'save'])->name('admin.bopp-stock-pp-categories.save');
-    Route::get('delete-category/{id}', [PPCategoryController::class, 'remove'])->name('admin.bopp-stock-pp-categories.remove');
-    Route::delete('boppstock-delete-selected-categories', [PPCategoryController::class, 'multidelete'])->name('bopp-stock.categories.deletemulti');
+    Route::get('admin/bopp-stock-pp-categories', [BoppCategoryController::class, 'index'])->name('bopp-stock.categories.view');    
+    Route::post('add-category', [BoppCategoryController::class, 'save'])->name('admin.bopp-stock-pp-categories.save');
+    Route::get('delete-category/{id}', [BoppCategoryController::class, 'remove'])->name('admin.bopp-stock-pp-categories.remove');
+    Route::delete('boppstock-delete-selected-categories', [BoppCategoryController::class, 'multidelete'])->name('bopp-stock.categories.deletemulti');
 
     // PP Items
-    Route::get('admin/bopp-stock-pp-item', [PPItemController::class, 'index'])->name('boppstock.items.view');    
-    Route::post('add-item', [PPItemController::class, 'save'])->name('admin.bopp-stock-pp-item.save');
-    Route::get('delete-item/{id}', [PPItemController::class, 'remove'])->name('admin.bopp-stock-pp-item.remove');
-    Route::delete('boppstock-delete-selected-items', [PPCategoryController::class, 'multidelete'])->name('bopp-stock.items.deletemulti');
+    Route::get('admin/bopp-stock-pp-item', [BoppItemController::class, 'index'])->name('boppstock.items.view');    
+    Route::post('add-item', [BoppItemController::class, 'save'])->name('admin.bopp-stock-pp-item.save');
+    Route::get('delete-item/{id}', [BoppItemController::class, 'remove'])->name('admin.bopp-stock-pp-item.remove');
+    Route::delete('boppstock-delete-selected-items', [BoppCategoryController::class, 'multidelete'])->name('bopp-stock.items.deletemulti');
 
     // Non woven categorry
     Route::get('admin/non-woven-categories', [NonWovenCategoryController::class, 'index'])->name('non-wovenfabricstock.categories.view');    
@@ -161,6 +166,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('add-non-woven-item', [NonWovenItemController::class, 'save'])->name('admin.NonWovenItem.save');
     Route::get('delete-non-woven-item/{id}', [NonWovenItemController::class, 'remove'])->name('non-wovenfabricstock.items.delete');
     Route::delete('non-woven-delete-selected-items', [NonWovenItemController::class, 'multidelete'])->name('non-wovenfabricstock.items.deletemulti');
+
+    // PP woven categorry
+    Route::get('admin/pp-woven-categories', [PPWovenCategoryController::class, 'index'])->name('ppwovenfabricstock.categories.view');    
+    Route::post('add-pp-woven-category', [PPWovenCategoryController::class, 'save'])->name('admin.PPWovenCategory.save');
+    Route::get('delete-pp-category/{id}', [PPWovenCategoryController::class, 'remove'])->name('admin.PPWovenCategory.remove');
+    Route::delete('pp-woven-delete-selected-categories', [PPWovenCategoryController::class, 'multidelete'])->name('pp-wovenfabricstock.categories.deletemulti');
+
+    // PP woven Items
+    Route::get('admin/pp-woven-item', [PPWovenItemController::class, 'index'])->name('ppwovenfabricstock.items.view');    
+    Route::post('add-pp-woven-item', [PPWovenItemController::class, 'save'])->name('admin.PPWovenItem.save');
+    Route::get('delete-pp-woven-item/{id}', [PPWovenItemController::class, 'remove'])->name('admin.PPWovenItem.remove');
+    Route::delete('pp-woven-delete-selected-items', [PPWovenItemController::class, 'multidelete'])->name('pp-wovenfabricstock.items.deletemulti');
 
 
 

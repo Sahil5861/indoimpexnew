@@ -9,7 +9,7 @@
                 <div class="page-header-content d-lg-flex">
                     <div class="d-flex">
                         <h4 class="page-title mb-0">
-                            Dashboard - <span class="fw-normal">PP Category List</span>
+                            Dashboard - <span class="fw-normal">Bopp Stock Category List</span>
                         </h4>
                         <a href="#page_header"
                             class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"

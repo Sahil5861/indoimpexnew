@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PPItem extends Model
+class PPWovenCategory
+ extends Model
 {
     use HasFactory;
 
-    protected $table = 'master_bopp';
+    protected $table = 'pp_woven_category';
 }

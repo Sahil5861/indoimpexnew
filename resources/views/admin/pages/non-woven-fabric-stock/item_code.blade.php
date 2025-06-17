@@ -48,7 +48,7 @@
                                         <th>Item Code</th>
                                         <th>Item Size</th>
                                         <th>Item Color</th>                                        
-                                        <th>GSM </th>                                        
+                                        <th>GMS </th>                                        
                                         <th>Created At</th>                                                                                
                                     </tr>
                                 </thead>
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>GSM :</label>
+                                    <label>GMS :</label>
                                     <input type="text" id="gsm" class="form-control" name="gsm" required placeholder="Enter GSM">
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>GSM :</label>
+                                    <label>GMS :</label>
                                     <input type="text" id="gsm1" class="form-control" name="gsm" required placeholder="Enter GSM">
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                 { data: 'item_code', name: 'item_code' },
                 { data: 'non_size', name: 'size' },
                 { data: 'non_color', name: 'color' },                                
-                { data: 'non_gsm', name: 'gsm' },                                
+                { data: 'non_gsm', name: 'non_gsm' },                                
                 { data: 'created_at', name: 'created_at' }                                
             ],
 
